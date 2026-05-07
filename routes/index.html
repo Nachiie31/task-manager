@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Task Manager</h1>
+
+    <div style="margin-bottom: 20px;">
+      <button onclick="upgradeToPro()" style="background: #f59e0b;">
+        ⭐ Upgrade to Pro — $9.99
+      </button>
+    </div>
+
+    <div class="input-row">
+      <input type="text" id="taskInput" placeholder="Enter a task..." />
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
