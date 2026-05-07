@@ -13,8 +13,8 @@ const paymentsRouter = require('./routes/payments');
 app.use('/api/tasks', tasksRouter);
 app.use('/api', paymentsRouter);
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Task Manager API is running' });
+app.get('/{*path}', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 module.exports = app;
