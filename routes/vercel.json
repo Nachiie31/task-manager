@@ -16,6 +16,18 @@
       "dest": "server.js"
     },
     {
+      "src": "/",
+      "dest": "public/index.html"
+    },
+    {
+      "src": "/success.html",
+      "dest": "public/success.html"
+    },
+    {
+      "src": "/cancel.html",
+      "dest": "public/cancel.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "public/$1"
     }
