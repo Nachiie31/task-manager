@@ -1,16 +1,20 @@
+require('dotenv').config();
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
+
 const app = express();
 
+app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+
+const tasksRouter = require('./routes/tasks');
+const paymentsRouter = require('./routes/payments');
+
+app.use('/api/tasks', tasksRouter);
+app.use('/api', paymentsRouter);
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.json({ status: 'ok', message: 'Task Manager API is running' });
 });
 
 module.exports = app;
