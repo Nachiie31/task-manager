@@ -139,20 +139,36 @@
     </div>
   </footer>
 
-  <script>
-    async function upgradeToPro() {
-      const res = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert('Something went wrong. Please try again.');
-      }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://jhjpdypjbcxyrurqownc.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpoanBkeXBqYmN4eXJ1cnFvd25jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwNDgxMDksImV4cCI6MjA5MzYyNDEwOX0.AwdurgMrs9V72MjRuc9FpC1jNfQkefUcIJla_0HrEkU';
+  const { createClient } = supabase;
+  const client = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  async function upgradeToPro() {
+    // Check if user is logged in first
+    const { data: { session } } = await client.auth.getSession();
+
+    if (!session) {
+      // Not logged in — send to signup first
+      window.location.href = 'signup.html?redirect=pricing';
+      return;
     }
-  </script>
+
+    // Logged in — proceed to Stripe
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  }
+</script>
 
 </body>
 </html>

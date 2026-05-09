@@ -11,6 +11,7 @@ async function checkSession() {
         window.location.href = 'dashboard.html';
       }
 }
+checkSession();
 
 async function login() {
   const email = document.getElementById('email').value;
@@ -32,6 +33,8 @@ async function signup() {
   const password = document.getElementById('password').value;
   const errorMsg = document.getElementById('error-msg');
   const successMsg = document.getElementById('success-msg');
+  errorMsg.style.display = 'none';
+  successMsg.style.display = 'none';
 
   const { error } = await client.auth.signUp({ email, password });
 
@@ -39,7 +42,13 @@ async function signup() {
     errorMsg.textContent = error.message;
     errorMsg.style.display = 'block';
   } else {
-    successMsg.textContent = 'Account created! Check your email to confirm, then sign in.';
-    successMsg.style.display = 'block';
+    // Check if they came from pricing page
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect === 'pricing') {
+      sessionStorage.removeItem('redirect');
+      window.location.href = 'pricing.html';
+    } else {
+      window.location.href = 'dashboard.html';
+    }
   }
 }

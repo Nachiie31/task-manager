@@ -362,3 +362,164 @@ a { text-decoration: none; color: inherit; }
 .footer-links a:hover { color: white; }
 
 .footer-copy { font-size: 13px; color: #666; }
+
+
+/* FOR PRICING CSS */
+
+/* Pricing header */
+.pricing-header { background: #f8f9ff; padding-top: 60px; }
+.pricing-sub { font-size: 18px; color: #666; margin-bottom: 0; }
+
+/* Pricing grid */
+.pricing-section { background: #f8f9ff; }
+
+.pricing-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.pricing-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px;
+  border: 1px solid #eee;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+}
+
+.pro-card {
+  border: 2px solid #5c6bc0;
+  box-shadow: 0 8px 32px rgba(92,107,192,0.15);
+}
+
+.pro-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5c6bc0;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.plan-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.price-amount {
+  font-size: 42px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.price-period {
+  font-size: 15px;
+  color: #888;
+}
+
+.plan-desc {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.btn-plan-free {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  border: 2px solid #5c6bc0;
+  border-radius: 8px;
+  color: #5c6bc0;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  transition: all 0.2s;
+}
+
+.btn-plan-free:hover { background: #f0f2ff; }
+
+.btn-plan-pro {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  background: #5c6bc0;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-plan-pro:hover { background: #3f51b5; }
+
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.check {
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.cross {
+  color: #bbb;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* FAQ */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.faq-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.faq-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+}
