@@ -11,15 +11,14 @@
   <!-- Navbar -->
   <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-brand"><a href="/">TaskFlow</a></div>
-    <div class="nav-links" id="nav-links">
+    <div class="nav-brand"><a href="/" id="nav-home">TaskFlow</a></div>
+    <div class="nav-links">
       <a href="/#features">Features</a>
-      <a href="pricing.html">Pricing</a>
       <a href="login.html" class="btn-nav-login" id="nav-login">Log in</a>
       <a href="signup.html" class="btn-nav-signup" id="nav-signup">Get started free</a>
     </div>
   </div>
-</nav>
+    </nav>
 
   <!-- Header -->
   <section class="pricing-header">
@@ -172,12 +171,16 @@
   // Update navbar based on auth state
   async function updateNav() {
     const { data: { session } } = await client.auth.getSession();
-    if (session) {
-      document.getElementById('nav-login').style.display = 'none';
-      document.getElementById('nav-signup').textContent = 'Dashboard';
-      document.getElementById('nav-signup').href = 'dashboard.html';
-      document.getElementById('nav-signup').style.background = '#5c6bc0';
-    }
+  if (session) {
+    // Fix logo to go to dashboard
+    document.getElementById('nav-home').href = 'dashboard.html';
+    // Fix buttons to show dashboard
+    document.getElementById('nav-login').style.display = 'none';
+    document.getElementById('nav-signup').textContent = 'Dashboard';
+    document.getElementById('nav-signup').href = 'dashboard.html';
+    document.getElementById('nav-signup').style.background = '#5c6bc0';
+    document.getElementById('nav-signup').style.color = 'white';
+  }
   }
   updateNav();
 </script>

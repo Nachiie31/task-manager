@@ -37,9 +37,15 @@ router.post('/', async (req, res) => {
   if (!title) return res.status(400).json({ error: 'Title is required' });
 
   const { data, error } = await supabase
-    .from('tasks')
-    .insert([{ title, priority, category, due_date, user_id: user.id }])
-    .select();
+  .from('tasks')
+  .insert([{ 
+    title, 
+    priority: priority || 'medium', 
+    category: category || 'general', 
+    due_date: due_date || null, 
+    user_id: user.id 
+  }])
+  .select();
 
   if (error) return res.status(500).json({ error: error.message });
   res.status(201).json(data[0]);

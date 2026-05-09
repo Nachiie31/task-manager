@@ -69,14 +69,17 @@ async function addTask() {
   const title = document.getElementById('task-title').value.trim();
   const priority = document.getElementById('task-priority').value;
   const category = document.getElementById('task-category').value;
-  const due_date = document.getElementById('task-due').value;
+  const due_date = document.getElementById('task-due').value || null;
 
-  if (!title) return;
+  if (!title) {
+    alert('Please enter a task title.');
+    return;
+  }
 
   const { data } = await client.auth.getSession();
   const token = data.session.access_token;
 
-  await fetch('/api/tasks', {
+  const res = await fetch('/api/tasks', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -84,6 +87,12 @@ async function addTask() {
     },
     body: JSON.stringify({ title, priority, category, due_date })
   });
+
+  const result = await res.json();
+  if (result.error) {
+    alert('Error adding task: ' + result.error);
+    return;
+  }
 
   closeModal();
   loadTasks();
@@ -130,11 +139,14 @@ function openModal() {
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
   document.getElementById('task-title').value = '';
+  document.getElementById('task-priority').value = 'medium';
+  document.getElementById('task-category').value = 'general';
+  document.getElementById('task-due').value = '';
 }
 
 async function logout() {
   await client.auth.signOut();
-  window.location.href = 'login.html';
+  window.location.href = '/';
 }
 
 init();
