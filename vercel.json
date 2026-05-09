@@ -14,6 +14,8 @@
     { "src": "/dashboard.html", "dest": "/public/dashboard.html" },
     { "src": "/success.html", "dest": "/public/success.html" },
     { "src": "/cancel.html", "dest": "/public/cancel.html" },
+    { "src": "/pricing.html", "dest": "/public/pricing.html" },
     { "src": "/", "dest": "/public/index.html" }
+    
   ]
 }

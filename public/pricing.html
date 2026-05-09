@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing — TaskFlow</title>
+  <link rel="stylesheet" href="landing.css"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand"><a href="/">TaskFlow</a></div>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="login.html" class="btn-nav-login">Log in</a>
+        <a href="signup.html" class="btn-nav-signup">Get started free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pricing-header">
+    <div class="section-inner" style="text-align:center; padding-bottom: 0;">
+      <p class="section-label">Pricing</p>
+      <h1 class="section-title" style="margin-bottom: 16px;">Simple, honest pricing</h1>
+      <p class="pricing-sub">Start for free. Upgrade when you need more.</p>
+    </div>
+  </section>
+
+  <!-- Pricing cards -->
+  <section class="pricing-section">
+    <div class="section-inner">
+      <div class="pricing-grid">
+
+        <!-- Free plan -->
+        <div class="pricing-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">
+            <span class="price-amount">$0</span>
+            <span class="price-period">/ forever</span>
+          </div>
+          <p class="plan-desc">Perfect for personal use and getting started.</p>
+          <a href="signup.html" class="btn-plan-free">Get started free</a>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Up to 10 tasks</li>
+            <li><span class="check">✓</span> Priority levels</li>
+            <li><span class="check">✓</span> Due dates</li>
+            <li><span class="check">✓</span> 3 categories</li>
+            <li><span class="check">✓</span> Secure account</li>
+            <li><span class="cross">✗</span> Unlimited tasks</li>
+            <li><span class="cross">✗</span> Priority support</li>
+            <li><span class="cross">✗</span> Export tasks</li>
+          </ul>
+        </div>
+
+        <!-- Pro plan -->
+        <div class="pricing-card pro-card">
+          <div class="pro-badge">Most popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="price-amount">$9.99</span>
+            <span class="price-period">/ month</span>
+          </div>
+          <p class="plan-desc">For power users who want the full experience.</p>
+          <button class="btn-plan-pro" onclick="upgradeToPro()">Upgrade to Pro</button>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Unlimited tasks</li>
+            <li><span class="check">✓</span> Priority levels</li>
+            <li><span class="check">✓</span> Due dates</li>
+            <li><span class="check">✓</span> Unlimited categories</li>
+            <li><span class="check">✓</span> Secure account</li>
+            <li><span class="check">✓</span> Unlimited tasks</li>
+            <li><span class="check">✓</span> Priority support</li>
+            <li><span class="check">✓</span> Export tasks</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-inner">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Common questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Can I cancel anytime?</h3>
+          <p>Yes, you can cancel your Pro subscription at any time. You'll keep access until the end of your billing period.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is my data safe?</h3>
+          <p>Absolutely. We use Supabase for secure authentication and your tasks are private — only you can see them.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What payment methods do you accept?</h3>
+          <p>We accept all major credit and debit cards through Stripe — Visa, Mastercard, and American Express.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I need a credit card for the free plan?</h3>
+          <p>No credit card required for the free plan. Sign up with just your email and start using TaskFlow immediately.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I upgrade or downgrade later?</h3>
+          <p>Yes, you can upgrade to Pro or go back to Free at any time from your account settings.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is there a student discount?</h3>
+          <p>We offer a 50% student discount. Contact us with your school email to get your discount code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="section-inner cta-inner">
+      <h2>Start organizing today</h2>
+      <p>Join thousands of people who use TaskFlow to get things done.</p>
+      <a href="signup.html" class="btn-hero-primary">Get started for free</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">TaskFlow</div>
+      <div class="footer-links">
+        <a href="/#features">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="login.html">Log in</a>
+        <a href="signup.html">Sign up</a>
+      </div>
+      <p class="footer-copy">© 2026 TaskFlow. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    async function upgradeToPro() {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    }
+  </script>
+
+</body>
+</html>
