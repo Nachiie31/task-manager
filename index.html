@@ -1,29 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Task Manager</title>
-  <link rel="stylesheet" href="/style.css" />
+  <title>TaskFlow — Simple Task Management</title>
+  <link rel="stylesheet" href="landing.css"/>
 </head>
 <body>
-  <div class="container">
-    <h1>Task Manager</h1>
 
-    <div style="margin-bottom: 20px;">
-      <button onclick="upgradeToPro()" style="background: #f59e0b;">
-        ⭐ Upgrade to Pro — $9.99
-      </button>
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">TaskFlow</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="login.html" class="btn-nav-login">Log in</a>
+        <a href="signup.html" class="btn-nav-signup">Get started free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✨ Simple. Focused. Powerful.</div>
+      <h1 class="hero-title">Manage your tasks<br/>without the chaos</h1>
+      <p class="hero-sub">TaskFlow helps you stay on top of everything — organize by priority, set due dates, and get things done. No clutter, no distractions.</p>
+      <div class="hero-btns">
+        <a href="signup.html" class="btn-hero-primary">Start for free</a>
+        <a href="#features" class="btn-hero-secondary">See how it works</a>
+      </div>
+      <p class="hero-note">Free forever · No credit card required</p>
     </div>
 
-    <div class="input-row">
-      <input type="text" id="taskInput" placeholder="Enter a task..." />
-      <button onclick="addTask()">Add</button>
+    <!-- Hero visual -->
+    <div class="hero-visual">
+      <div class="mock-card">
+        <div class="mock-header">
+          <span class="mock-title">My Tasks</span>
+          <span class="mock-btn">+ New task</span>
+        </div>
+        <div class="mock-task high">
+          <span class="mock-check">✓</span>
+          <div class="mock-task-info">
+            <span class="mock-task-name done-task">Review project proposal</span>
+            <span class="mock-badge high-badge">High</span>
+          </div>
+        </div>
+        <div class="mock-task medium active-task">
+          <span class="mock-check empty-check"></span>
+          <div class="mock-task-info">
+            <span class="mock-task-name">Design landing page</span>
+            <span class="mock-badge medium-badge">Medium</span>
+            <span class="mock-badge date-badge">📅 Today</span>
+          </div>
+        </div>
+        <div class="mock-task low">
+          <span class="mock-check empty-check"></span>
+          <div class="mock-task-info">
+            <span class="mock-task-name">Update documentation</span>
+            <span class="mock-badge low-badge">Low</span>
+          </div>
+        </div>
+        <div class="mock-task medium">
+          <span class="mock-check empty-check"></span>
+          <div class="mock-task-info">
+            <span class="mock-task-name">Send weekly report</span>
+            <span class="mock-badge medium-badge">Medium</span>
+            <span class="mock-badge date-badge">📅 Tomorrow</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <ul id="taskList"></ul>
-  </div>
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Everything you need, nothing you don't</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Priority levels</h3>
+          <p>Mark tasks as high, medium, or low priority so you always know what to tackle first.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Due dates</h3>
+          <p>Set deadlines on your tasks and never miss an important date again.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🗂️</div>
+          <h3>Categories</h3>
+          <p>Organize tasks into Work, Personal, or General buckets to keep things tidy.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Private & secure</h3>
+          <p>Your tasks are yours only. We use secure authentication to keep your data safe.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Lightning fast</h3>
+          <p>No page reloads, no lag. TaskFlow updates instantly as you work.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Pro upgrades</h3>
+          <p>Unlock unlimited tasks and priority support with our affordable Pro plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <script src="/app.js"></script>
+  <!-- Social proof -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title">People love TaskFlow</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"I've tried every task app out there. TaskFlow is the only one that doesn't get in my way."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JM</div>
+            <div>
+              <p class="author-name">James M.</p>
+              <p class="author-role">Product Designer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"The priority levels and due dates are exactly what I needed to stay on top of my projects."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SC</div>
+            <div>
+              <p class="author-name">Sarah C.</p>
+              <p class="author-role">Freelance Developer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Clean, simple, and just works. Finally a task manager that respects my time."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RK</div>
+            <div>
+              <p class="author-name">Rico K.</p>
+              <p class="author-role">Startup Founder</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="section-inner cta-inner">
+      <h2>Ready to get organized?</h2>
+      <p>Join thousands of people who use TaskFlow to stay on top of their work.</p>
+      <a href="signup.html" class="btn-hero-primary">Get started for free</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">TaskFlow</div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="login.html">Log in</a>
+        <a href="signup.html">Sign up</a>
+      </div>
+      <p class="footer-copy">© 2026 TaskFlow. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>

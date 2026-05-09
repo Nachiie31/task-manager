@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — TaskFlow</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">TaskFlow</div>
+    <div class="nav-right">
+      <span id="user-email" class="user-email"></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-label">Filter by priority</p>
+        <button class="filter-btn active" onclick="filterTasks('all')">All tasks</button>
+        <button class="filter-btn" onclick="filterTasks('high')">🔴 High</button>
+        <button class="filter-btn" onclick="filterTasks('medium')">🟡 Medium</button>
+        <button class="filter-btn" onclick="filterTasks('low')">🟢 Low</button>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-label">Filter by category</p>
+        <button class="filter-btn" onclick="filterCategory('all')">All categories</button>
+        <button class="filter-btn" onclick="filterCategory('general')">General</button>
+        <button class="filter-btn" onclick="filterCategory('work')">Work</button>
+        <button class="filter-btn" onclick="filterCategory('personal')">Personal</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <div class="main-header">
+        <h1>My Tasks</h1>
+        <button class="btn-add" onclick="openModal()">+ New task</button>
+      </div>
+
+      <div id="task-list" class="task-list">
+        <p class="loading-text">Loading tasks...</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div id="modal" class="modal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>New task</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label>Task title</label>
+        <input type="text" id="task-title" placeholder="What needs to be done?"/>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="task-priority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="task-category">
+            <option value="general">General</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Due date</label>
+        <input type="date" id="task-due"/>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-primary" onclick="addTask()">Add task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

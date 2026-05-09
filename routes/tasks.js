@@ -1,44 +1,57 @@
 const express = require('express');
 const router = express.Router();
-const { createClient} = require('@supabase/supabase-js');
-const { create } = require('node:domain');
+const { createClient } = require('@supabase/supabase-js');
 
-// let tasks = [];
-
-const supabase = createClient(
+function getSupabase(token) {
+  return createClient(
     process.env.SUPABASE_URL,
-    process.env.SUPABASE_KEY
-);
+    process.env.SUPABASE_KEY,
+    { global: { headers: { Authorization: `Bearer ${token}` } } }
+  );
+}
 
-// GET all task
+// GET all tasks
 router.get('/', async (req, res) => {
-    const { data, error } = await supabase
-        .from('tasks')
-        .select('*')
-        .order('created_at', {ascending: true });
-    if (error) return res.status(500).json({error: error.message});
-    res.json(data);
-});
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
 
+  const supabase = getSupabase(token);
+  const { data, error } = await supabase
+    .from('tasks')
+    .select('*')
+    .order('created_at', { ascending: true });
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data);
+});
 
 // POST create a task
 router.post('/', async (req, res) => {
-  const { title } = req.body;
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+  const supabase = getSupabase(token);
+  const { data: { user } } = await supabase.auth.getUser();
+
+  const { title, priority, category, due_date } = req.body;
   if (!title) return res.status(400).json({ error: 'Title is required' });
 
-  const {data, error} = await supabase
-  .from('tasks')
-  .insert([{ title }])
-  .select();
+  const { data, error } = await supabase
+    .from('tasks')
+    .insert([{ title, priority, category, due_date, user_id: user.id }])
+    .select();
 
-  if (error) return res.status(500).json({error: error.message});
+  if (error) return res.status(500).json({ error: error.message });
   res.status(201).json(data[0]);
 });
 
-
 // PUT toggle done
 router.put('/:id', async (req, res) => {
-  const{ id } = req.params;
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+  const supabase = getSupabase(token);
+  const { id } = req.params;
 
   const { data: task, error: fetchError } = await supabase
     .from('tasks')
@@ -47,8 +60,8 @@ router.put('/:id', async (req, res) => {
     .single();
 
   if (fetchError) return res.status(404).json({ error: 'Task not found' });
-  
-  const {data, error } = await supabase
+
+  const { data, error } = await supabase
     .from('tasks')
     .update({ done: !task.done })
     .eq('id', id)
@@ -59,15 +72,18 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE a task
-
 router.delete('/:id', async (req, res) => {
-  const {error} = await supabase
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+
+  const supabase = getSupabase(token);
+  const { error } = await supabase
     .from('tasks')
     .delete()
     .eq('id', req.params.id);
 
-  if (error) return res.status(500).json({error: error.message});
-  res.json({ message: 'Task deleted'});
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ message: 'Task deleted' });
 });
 
 module.exports = router;
