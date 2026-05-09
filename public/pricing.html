@@ -147,16 +147,14 @@
   const client = createClient(SUPABASE_URL, SUPABASE_KEY);
 
   async function upgradeToPro() {
-    // Check if user is logged in first
     const { data: { session } } = await client.auth.getSession();
 
     if (!session) {
-      // Not logged in — send to signup first
-      window.location.href = 'signup.html?redirect=pricing';
+      sessionStorage.setItem('redirect', 'pricing');
+      window.location.href = 'login.html';
       return;
     }
 
-    // Logged in — proceed to Stripe
     const res = await fetch('/api/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }

@@ -17,6 +17,7 @@ async function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const errorMsg = document.getElementById('error-msg');
+  errorMsg.style.display = 'none';
 
   const { error } = await client.auth.signInWithPassword({ email, password });
 
@@ -24,7 +25,14 @@ async function login() {
     errorMsg.textContent = error.message;
     errorMsg.style.display = 'block';
   } else {
-    window.location.href = 'dashboard.html';
+    // Check if they came from somewhere specific
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect === 'pricing') {
+      sessionStorage.removeItem('redirect');
+      window.location.href = 'pricing.html';
+    } else {
+      window.location.href = 'dashboard.html';
+    }
   }
 }
 
