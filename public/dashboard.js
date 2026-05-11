@@ -110,6 +110,9 @@ async function toggleTask(id) {
 }
 
 async function deleteTask(id) {
+  const confirmed = confirm('Are you sure you want to delete this task?');
+  if (!confirmed) return;
+
   const { data } = await client.auth.getSession();
   const token = data.session.access_token;
 
