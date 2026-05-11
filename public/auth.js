@@ -20,6 +20,13 @@ async function login() {
   errorMsg.style.display = 'none';
 
   // Validate before sending to Supabase
+
+    if (!email && !password) {
+    errorMsg.textContent = 'All fields are required.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
   if (!email) {
     errorMsg.textContent = 'Email is required.';
     errorMsg.style.display = 'block';
@@ -59,11 +66,6 @@ async function signup() {
 
   // Validate before sending to Supabase
 
-  if (!email && !password) {
-    errorMsg.textContent = 'All fields are required.';
-    errorMsg.style.display = 'block';
-    return;
-  }
 
   if (!email) {
     errorMsg.textContent = 'Email is required.';
