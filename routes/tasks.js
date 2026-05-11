@@ -31,21 +31,26 @@ router.post('/', async (req, res) => {
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
 
   const supabase = getSupabase(token);
-  const { data: { user } } = await supabase.auth.getUser();
+  
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  
+  if (userError || !userData.user) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
 
   const { title, priority, category, due_date } = req.body;
   if (!title) return res.status(400).json({ error: 'Title is required' });
 
   const { data, error } = await supabase
-  .from('tasks')
-  .insert([{ 
-    title, 
-    priority: priority || 'medium', 
-    category: category || 'general', 
-    due_date: due_date || null, 
-    user_id: user.id 
-  }])
-  .select();
+    .from('tasks')
+    .insert([{ 
+      title, 
+      priority: priority || 'medium', 
+      category: category || 'general', 
+      due_date: due_date || null, 
+      user_id: userData.user.id 
+    }])
+    .select();
 
   if (error) return res.status(500).json({ error: error.message });
   res.status(201).json(data[0]);
