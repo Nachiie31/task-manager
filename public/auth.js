@@ -60,7 +60,7 @@ async function signup() {
   // Validate before sending to Supabase
 
   if (!email && !password) {
-    errorMsg.textContent = 'fields are required.';
+    errorMsg.textContent = 'All fields are required.';
     errorMsg.style.display = 'block';
     return;
   }
