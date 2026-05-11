@@ -20,8 +20,10 @@ router.post('/create-checkout', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000/success.html',
-      cancel_url: 'http://localhost:3000/cancel.html',
+      const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+
+      success_url: `${BASE_URL}/success.html`,
+      cancel_url: `${BASE_URL}/cancel.html`,
     });
 
     res.json({ url: session.url });
