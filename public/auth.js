@@ -19,6 +19,19 @@ async function login() {
   const errorMsg = document.getElementById('error-msg');
   errorMsg.style.display = 'none';
 
+  // Validate before sending to Supabase
+  if (!email) {
+    errorMsg.textContent = 'Email is required.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  if (!password) {
+    errorMsg.textContent = 'Password is required.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
   const { error } = await client.auth.signInWithPassword({ email, password });
 
   if (error) {
@@ -43,6 +56,25 @@ async function signup() {
   const successMsg = document.getElementById('success-msg');
   errorMsg.style.display = 'none';
   successMsg.style.display = 'none';
+
+  // Validate before sending to Supabase
+  if (!email) {
+    errorMsg.textContent = 'Email is required.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  if (!password) {
+    errorMsg.textContent = 'Password is required.';
+    errorMsg.style.display = 'block';
+    return;
+  }
+
+  if (password.length < 6) {
+    errorMsg.textContent = 'Password must be at least 6 characters.';
+    errorMsg.style.display = 'block';
+    return;
+  }
 
   const { error } = await client.auth.signUp({ email, password });
 
