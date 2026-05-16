@@ -523,3 +523,120 @@ a { text-decoration: none; color: inherit; }
   color: #666;
   line-height: 1.7;
 }
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .nav-inner {
+    padding: 0 16px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  .btn-nav-login {
+    padding: 6px 10px;
+  }
+
+  .btn-nav-signup {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  /* Hero */
+  .hero {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 32px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+
+  .mock-card {
+    max-width: 100%;
+  }
+
+  /* Features */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-card {
+    max-width: 100%;
+  }
+
+  /* FAQ */
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 26px;
+  }
+
+  .section-inner {
+    padding: 48px 20px;
+  }
+
+  /* CTA */
+  .cta h2 { font-size: 26px; }
+  .cta p { font-size: 16px; }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .hero-title { font-size: 28px; }
+  .nav-links { gap: 8px; }
+  .btn-nav-signup { display: none; }
+}

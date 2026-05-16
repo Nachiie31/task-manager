@@ -430,3 +430,79 @@ body {
   box-shadow: 0 2px 12px rgba(0,0,0,0.1);
   margin: 40px auto;
 }
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  /* Auth pages */
+  .auth-box {
+    padding: 28px 20px;
+  }
+
+  /* Dashboard navbar */
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .user-email {
+    display: none;
+  }
+
+  /* Dashboard layout — stack sidebar on top */
+  .dashboard-wrapper {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e8eaf6;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  .sidebar-section {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .filter-btn {
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding: 20px 16px;
+  }
+
+  .main-header h1 {
+    font-size: 20px;
+  }
+
+  /* Task cards */
+  .task-card {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn-delete {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Modal */
+  .modal-box {
+    padding: 24px 16px;
+    margin: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
